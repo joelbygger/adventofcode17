@@ -9,8 +9,8 @@ new_cpp_library_shared(
         SOURCES test_base.cpp
         LINK_PUBLIC Catch2::Catch2)
 
-#new_cpp_executable(
-#        NAME day1_test
-#        SOURCES day1.cpp
-#        LINK_PUBLIC test_base fuel_lib)
-#catch_discover_tests(day1_test)
+new_cpp_executable(
+        NAME day1_test
+        SOURCES day1.cpp
+        LINK_PUBLIC test_base captcha_lib)
+catch_discover_tests(day1_test)
