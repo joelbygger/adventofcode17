@@ -4,6 +4,7 @@
  *
  */
 #include "captcha.hpp"
+#include <cassert>
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -51,7 +52,13 @@ int main(int argc, char** argv)
         // Read the file.
         std::vector<int> captcha = getInput(argv[1]);
         if (!captcha.empty()) {
-            std::cout << "Sum: " << Captcha::accumulator(captcha) << "\n";
+            auto sum = Captcha::accumulator(captcha, Captcha::check_step::next);
+            assert((sum == 1228));
+            std::cout << "Sum increment one: " << sum << "\n";
+            
+            sum = Captcha::accumulator(captcha, Captcha::check_step::next_half);
+            assert((sum == 1238));
+            std::cout << "Sum increment 50%: " << sum << "\n";
         }
     }
     return 0;
