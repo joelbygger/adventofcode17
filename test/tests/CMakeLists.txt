@@ -14,3 +14,9 @@ new_cpp_executable(
         SOURCES day1.cpp
         LINK_PUBLIC test_base captcha_lib)
 catch_discover_tests(day1_test)
+
+new_cpp_executable(
+        NAME day2_test
+        SOURCES day2.cpp
+        LINK_PUBLIC test_base checksum_lib)
+catch_discover_tests(day2_test)

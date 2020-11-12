@@ -3,10 +3,12 @@
  * Program reads a file. A bit of error checking is applied.
  *
  */
-#include "captcha.hpp"
+#include "checksum.hpp"
+#include <algorithm>
 #include <cassert>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -17,23 +19,30 @@ namespace
      * @param path Path to file.
      * @return File data to be used.
      */
-    std::vector<int> getInput(const char* path)
+    std::vector<std::vector<int>> getInput(const char* path)
     {
-        std::vector<int> captcha;
-
         std::ifstream ifs(path, std::ios_base::in);
+        std::vector<std::vector<int>> numbers;
+
         if (!ifs) {
             std::cout << "Failed to open file.\n";
         }
         else {
             // Read the file.
-            char c = 0;
-            while (ifs.get(c)) {
-                captcha.emplace_back(static_cast<int>(c) - static_cast<int>('0'));
+            std::string row;
+            while (std::getline(ifs, row)) {
+                std::istringstream rowSs(row);
+                std::vector<int> rowVec;
+                int num = 0;
+
+                while (rowSs >> num) {
+                    rowVec.push_back(num);
+                }
+                numbers.push_back(rowVec);
             }
         }
 
-        return captcha;
+        return numbers;
     }
 
 } // namespace
@@ -49,16 +58,11 @@ int main(int argc, char** argv)
     else {
         std::cout << "Received path: " << argv[1] << "\n";
 
-        // Read the file.
-        std::vector<int> captcha = getInput(argv[1]);
-        if (!captcha.empty()) {
-            auto sum = Captcha::accumulator(captcha, Captcha::check_step::next);
-            assert((sum == 1228));
-            std::cout << "Sum increment one: " << sum << "\n";
-
-            sum = Captcha::accumulator(captcha, Captcha::check_step::next_half);
-            assert((sum == 1238));
-            std::cout << "Sum increment 50%: " << sum << "\n";
+        std::vector<std::vector<int>> numbers = getInput(argv[1]);
+        if (!numbers.empty()) {
+            auto checksum = Checksum::calc(numbers);
+            assert((checksum == 45158));
+            std::cout << "Checksum is: " << checksum << "\n";
         }
     }
     return 0;
