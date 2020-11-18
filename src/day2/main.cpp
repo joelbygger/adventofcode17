@@ -63,6 +63,10 @@ int main(int argc, char** argv)
             auto checksum = Checksum::calc(numbers);
             assert((checksum == 45158));
             std::cout << "Checksum is: " << checksum << "\n";
+
+            auto sum = Checksum::sum_even_divisible(numbers);
+            assert((checksum == 294));
+            std::cout << "Sum of even divisible is: " << sum << "\n";
         }
     }
     return 0;
