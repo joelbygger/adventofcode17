@@ -2,13 +2,7 @@ import collections
 import itertools
 import sys
 
-class SpiralGrid:
-    def __init__(self):
-        self.dir_generator = self.direction_generator()
-        self.start_pos = (1, 1)
-        self.grid = collections.OrderedDict()
-        self.grid[self.start_pos] = 1
-
+class Helpers:
     def direction_generator(self):
         steps_in_dir = 1
         steps_in_dir_increase = 0
@@ -21,9 +15,19 @@ class SpiralGrid:
             if steps_in_dir_increase >= 2:
                 steps_in_dir += 1
                 steps_in_dir_increase = 0
-    
+
+
+class SpiralGrid:
+    def __init__(self):
+        self.helpers = Helpers()
+        self.direction_generator = self.helpers.direction_generator()
+
+        self.start_pos = (1, 1)
+        self.grid = collections.OrderedDict()
+        self.grid[self.start_pos] = 1
+
     def _add_point(self):
-        dir = next(self.dir_generator)
+        dir = next(self.direction_generator)
         last_point = next(reversed(self.grid))
         self.grid[(last_point[0] + dir[0], last_point[1] + dir[1])] = self.grid[last_point] + 1
 

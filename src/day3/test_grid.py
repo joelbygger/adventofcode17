@@ -3,8 +3,8 @@ import spiral_grid
 
 
 def test_get_directions():
-    grid = spiral_grid.SpiralGrid()
-    assert list(itertools.islice(grid.direction_generator(), 25)) == [(1, 0), (0, -1), (-1, 0), (-1, 0), (0, 1), (0, 1), (1, 0), (1, 0), (1, 0), (0, -1), (0, -1), (0, -1), (-1, 0), (-1, 0), (-1, 0), (-1, 0), (0, 1), (0, 1), (0, 1), (0, 1), (1, 0), (1, 0), (1, 0), (1, 0), (1, 0)]
+    helper = spiral_grid.Helpers()
+    assert list(itertools.islice(helper.direction_generator(), 25)) == [(1, 0), (0, -1), (-1, 0), (-1, 0), (0, 1), (0, 1), (1, 0), (1, 0), (1, 0), (0, -1), (0, -1), (0, -1), (-1, 0), (-1, 0), (-1, 0), (-1, 0), (0, 1), (0, 1), (0, 1), (0, 1), (1, 0), (1, 0), (1, 0), (1, 0), (1, 0)]
 
 def test_create_grid():
     grid = spiral_grid.SpiralGrid()
