@@ -20,3 +20,9 @@ new_cpp_executable(
         SOURCES day2.cpp
         LINK_PUBLIC test_base checksum_lib)
 catch_discover_tests(day2_test)
+
+new_cpp_executable(
+        NAME day5_test
+        SOURCES day5.cpp
+        LINK_PUBLIC test_base jump_instructions_lib)
+catch_discover_tests(day5_test)
