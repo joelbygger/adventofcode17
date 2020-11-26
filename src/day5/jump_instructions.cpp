@@ -13,7 +13,7 @@ namespace Jump_instructions
         int index = 0;
         int count = 0;
 
-        while (static_cast<size_t>(index) < instructions.size()) {
+        while (index >= 0 && static_cast<size_t>(index) < instructions.size()) {
             const auto raw_val = instructions.at(static_cast<size_t>(index));
             step_rules.try_emplace(index, raw_val);
 
