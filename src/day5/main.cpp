@@ -53,9 +53,13 @@ int main(int argc, char** argv)
 
         std::vector<int> instructions = getInput(argv[1]);
         if (!instructions.empty()) {
-            auto count = Jump_instructions::to_exit(instructions);
+            auto count = Jump_instructions::to_exit(instructions, false);
             assert((count == 356945));
-            std::cout << "Steps to reach exit: " << count << "\n";
+            std::cout << "Steps to reach exit, part 1: " << count << "\n";
+
+            count = Jump_instructions::to_exit(instructions, true);
+            assert((count == 28372145));
+            std::cout << "Steps to reach exit, part 2: " << count << "\n";
         }
     }
     return 0;
