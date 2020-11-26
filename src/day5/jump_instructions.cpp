@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <functional>
 #include <iostream>
-#include <map>
+#include <unordered_map>
 #include <numeric>
 
 namespace
@@ -17,7 +17,7 @@ namespace Jump_instructions
 {
     int to_exit(const std::vector<int>& instructions, bool jump_cap)
     {
-        std::map<int, int> step_rules;
+        std::unordered_map<int, int> step_rules;
         int index = 0;
         int count = 0;
 
