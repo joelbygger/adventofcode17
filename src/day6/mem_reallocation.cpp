@@ -31,7 +31,7 @@ namespace
 
 namespace Mem_reallocation
 {
-    int run(std::vector<int> banks)
+    int run(std::vector<int>& banks)
     {
         int count = 0;
         std::vector<std::vector<int>> seen;
@@ -42,8 +42,6 @@ namespace Mem_reallocation
             realloc(banks);
             count++;
         }
-
-        std::cout << "Found duplicate\n";
 
         return count;
     }

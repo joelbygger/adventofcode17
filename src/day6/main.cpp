@@ -56,6 +56,11 @@ int main(int argc, char** argv)
             auto count = Mem_reallocation::run(banks);
             assert((count == 4074));
             std::cout << "Cycles until repeat, part 1: " << count << "\n";
+
+            // Run again to find size of infinite loop.
+            count = Mem_reallocation::run(banks);
+            assert((count == 2793));
+            std::cout << "Cycles until repeat, part 2: " << count << "\n";
         }
     }
     return 0;
