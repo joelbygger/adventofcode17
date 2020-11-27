@@ -26,3 +26,9 @@ new_cpp_executable(
         SOURCES day5.cpp
         LINK_PUBLIC test_base jump_instructions_lib)
 catch_discover_tests(day5_test)
+
+new_cpp_executable(
+        NAME day6_test
+        SOURCES day6.cpp
+        LINK_PUBLIC test_base mem_reallocation_lib)
+catch_discover_tests(day5_test)
